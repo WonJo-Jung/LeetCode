@@ -3,9 +3,10 @@
  * @return {number}
  */
 var maximumWealth = function(accounts) {
-    let answers = [];
+    let answer = -1;
     for(let i=0; i<accounts.length; i++) {
-        answers.push(accounts[i].reduce((acc, curr) => acc + curr, 0));
+        const total = accounts[i].reduce((acc, curr) => acc + curr, 0);
+        if(answer < total) answer = total;
     }
-    return Math.max.apply(null, answers);
+    return answer;
 };
