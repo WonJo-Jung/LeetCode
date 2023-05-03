@@ -25,13 +25,10 @@ var climbStairs = function(n) {
   // const answer = map.get(n);
   // return answer.length;
   
-  if(n == 1) return 1;
-  else if(n == 2) return 2;
-  else {
-    let answers = [1,2];
-    for(let i=2; i<n; i++) {
-      answers.push(answers[i-2] + answers[i-1]);
-    }
-    return answers.pop();
+  
+  let answers = [1,2];
+  for(let i=2; i<n; i++) {
+    answers.push(answers[i-2] + answers[i-1]);
   }
+  return answers[n-1];
 };
