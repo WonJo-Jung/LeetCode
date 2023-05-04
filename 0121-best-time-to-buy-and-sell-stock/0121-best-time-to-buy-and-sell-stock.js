@@ -3,6 +3,7 @@
  * @return {number}
  */
 var maxProfit = function(prices) {
+  /* index approach */
   // let max_profit = 0;
   // for(let left=0, right=1; right<prices.length; right++) {
   //   const diff = prices[right] - prices[left];
@@ -16,6 +17,7 @@ var maxProfit = function(prices) {
   // }
   // return max_profit;
   
+  /* best approach */
   // let profit = 0;
   // let buy = Infinity;
   // for(let i=0; i<prices.length; i++) {
