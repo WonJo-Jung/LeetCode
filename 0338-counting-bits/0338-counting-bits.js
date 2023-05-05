@@ -13,7 +13,7 @@ var countBits = function(n) {
 
   let answer = [0], index = 0, base = 1, increment = 1;
   for(let num=1; num<=n; num++) {
-    answer.push(answer[index]+1);
+    answer[num] = answer[index]+1;
     if(num == base) {
       index = 0;
       base += increment *= 2;
