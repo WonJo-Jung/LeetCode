@@ -11,7 +11,8 @@ var divisorGame = function(n) {
   // }
   // if(player == 0) return false;
   // else if(player == 1) return true;
-  return n%2 === 0;
+  let answer = n%2 === 0 ? true : false;
+  return answer;
 };
 
 // let getMaxFactor = function(n) {
