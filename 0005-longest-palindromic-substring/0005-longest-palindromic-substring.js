@@ -8,7 +8,7 @@ var longestPalindrome = function(s) {
   for(let i=0; i<n; i++) {
     dp[i] = new Array(n);
   }
-  let start = n, max_length = 0;
+  let start = 0, max_length = 0;
   for(let i=n-1; i>=0; i--) {
     for(let j=i; j<n; j++) {
       dp[i][j] = s[i] === s[j] && (j-i<3 || dp[i+1][j-1]);
