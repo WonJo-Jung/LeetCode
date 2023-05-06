@@ -3,14 +3,14 @@
  * @return {number}
  */
 var tribonacci = function(n) {
+  let left = 0, medium = 1, right = 1;
   if(n <= 2) {
     if(n <= 1) {
       if(n <= 0) {
-        return 0;
-      } else return 1;
-    } else return 1;
+        return left;
+      } else return medium;
+    } else return right;
   }
-  let left = 0, medium = 1, right = 1;
   while(n-- > 2) {
     let curr = left + medium + right;
     left = medium;
