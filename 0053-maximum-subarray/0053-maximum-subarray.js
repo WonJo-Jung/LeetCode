@@ -4,7 +4,8 @@
  */
 var maxSubArray = function(nums) {
   const n = nums.length;
-  // Fourth Kadane's approach
+  /*
+   ** Fourth Kadane's approach
   let localMax = nums[0];
   let globalMax = nums[0];
   for(let i=1; i<n; i++) {
@@ -12,8 +13,8 @@ var maxSubArray = function(nums) {
     if(globalMax < localMax) globalMax = localMax;
   }
   return globalMax;
-  /*
-   ** third DP apparoach - Success **
+  */
+  // ** third DP apparoach - Success **
   let dp = new Array(n);
   dp[0] = nums[0];
   let max = dp[0];
@@ -22,7 +23,6 @@ var maxSubArray = function(nums) {
     max = Math.max(max, dp[i]);
   }
   return max;
-  */
   /*
    ** second approach - Wrong Answer **
   let count = 1;
