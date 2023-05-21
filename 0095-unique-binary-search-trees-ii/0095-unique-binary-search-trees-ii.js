@@ -11,12 +11,12 @@
  * @return {TreeNode[]}
  */
 var generateTrees = function(n, l = 1, r = n, res = []) {
-    for(let i = l; i <= r; i++){
-        for(const left of generateTrees(n, l, i - 1)){
-            for(const right of generateTrees(n, i + 1, r)){
-                res.push({val: i, left, right});
-            }
-        }
+  for(let i = l; i <= r; i++){
+    for(const left of generateTrees(n, l, i - 1)){
+      for(const right of generateTrees(n, i + 1, r)){
+          res.push(new TreeNode(i, left, right));
+      }
     }
-    return n ? res.length ? res : [null] : [];
+  }
+  return n ? res.length ? res : [null] : [];
 };
