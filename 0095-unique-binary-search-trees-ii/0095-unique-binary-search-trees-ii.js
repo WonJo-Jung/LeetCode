@@ -13,13 +13,13 @@
 // var generateTrees = function(n, l = 1, r = n, res = []) {
 var generateTrees = function(n) {
   let bsts = new Array(n+1);
-  bsts[0] = [null], bsts[1] = [{val:1, left:null, right:null}];
+  bsts[0] = [null], bsts[1] = [new TreeNode(1)];
   for(let i=2; i<=n; i++) {
     bsts[i] = [];
     for(let j=1; j<=i; j++) {
       for(const nodeL of bsts[j-1]) {
         for(const nodeR of bsts[i-j]) {
-          let node = {val:j};
+          let node = new TreeNode(j);
           node.left = nodeL;
           node.right = clone(nodeR, j);
           bsts[i][bsts[i].length] = node;
@@ -44,7 +44,7 @@ var generateTrees = function(n) {
  */
 let clone = function(node, offset) {
   if(node === null) return null;
-  let newNode = {val:node.val + offset};
+  let newNode = new TreeNode(node.val + offset);
   newNode.left = clone(node.left, offset);
   newNode.right = clone(node.right, offset);
   return newNode;
