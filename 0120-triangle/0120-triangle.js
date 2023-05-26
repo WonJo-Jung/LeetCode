@@ -10,8 +10,10 @@ var minimumTotal = function(triangle) {
     for(let j=0; j<i; j++) {
       dp[j] = triangle[i-1][j] + Math.min(j-1<0 ? Infinity : triangle[i-2][j-1], j+1 === i ? Infinity : triangle[i-2][j]);
     }
-    for(let j=0; j<i; j++) {
-      triangle[i-1][j] = dp[j];
+    if(i<n) {
+      for(let j=0; j<i; j++) {
+        triangle[i-1][j] = dp[j];
+      }
     }
   }
   return Math.min.apply(null, dp);
