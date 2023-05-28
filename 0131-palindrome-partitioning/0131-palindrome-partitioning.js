@@ -1,13 +1,9 @@
-/**
- * @param {string} s
- * @return {string[][]}
- */
 let isPalindrome = function (s, low, high) {
   while(low < high) {
     if(s.charAt(low++) !== s.charAt(high--)) return false;
   }
   return true;
-}
+};
 
 let dfs = function(start, result, currentList, s) {
   if(start >= s.length) result[result.length] = JSON.parse(JSON.stringify(currentList));
@@ -20,12 +16,18 @@ let dfs = function(start, result, currentList, s) {
       currentList.pop();
     }
   }
-}
+};
 
+/**
+ * @param {string} s
+ * @return {string[][]}
+ */
 var partition = function(s) {
   let result = [];
   dfs(0, result, [], s);
   return result;
+};
+
 // var partition = function(s, b=0, e=s.length, map=new Map()) {
 //   if(e-b === 1) {
 //     map.set(`${b},${e}`, [[s]]);
@@ -66,4 +68,4 @@ var partition = function(s) {
 //   }
 //   map.set(`${b},${e}`, palindrome);
 //   return map.get(`${b},${e}`);
-};
+// };
