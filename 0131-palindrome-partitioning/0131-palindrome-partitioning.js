@@ -1,3 +1,30 @@
+/* BACKTRACKING with DP*/
+let dfs = function(result, s, start, currentList, dp) {
+  if(start >= s.length) result[result.length] = JSON.parse(JSON.stringify(currentList));
+  for(let end = start; end < s.length; end++) {
+    if(s.charAt(start) === s.charAt(end) && (end - start <= 2 || dp[start+1][end-1])) {
+      dp[start][end] = true;
+      currentList[currentList.length] = s.substring(start, end+1);
+      dfs(result, s, end+1, currentList, dp);
+      currentList.pop();
+    }
+  }
+}
+
+/** 
+ * @param {string} s
+ * @return {string[][]}
+ */
+var partition = function(s) {
+  const len = s.length;
+  let dp = [];
+  for(let i=0; i<len; i++) dp[i] = [];
+  let result = [];
+  dfs(result, s, 0, [], dp);
+  return result;
+};
+
+/* ONLY BACKTRACKING
 let isPalindrome = function (s, low, high) {
   while(low < high) {
     if(s.charAt(low++) !== s.charAt(high--)) return false;
@@ -18,15 +45,12 @@ let dfs = function(start, result, currentList, s) {
   }
 };
 
-/**
- * @param {string} s
- * @return {string[][]}
- */
 var partition = function(s) {
   let result = [];
   dfs(0, result, [], s);
   return result;
 };
+*/
 
 // var partition = function(s, b=0, e=s.length, map=new Map()) {
 //   if(e-b === 1) {
