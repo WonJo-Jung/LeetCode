@@ -14,15 +14,12 @@ var rob = function(nums) {
       dp[i] = nums[i] + nums[s];
       continue;
     }
-    else if(s < e) {
-      if(e-s === 1) {
+    else if(s < e && e-s === 1) {
         dp[i] = nums[i] + Math.max(nums[s], nums[e]);
         continue;
-      }
-      else acc = JSON.parse(JSON.stringify(nums.slice(s, e+1)));
-    } else {
-      acc = JSON.parse(JSON.stringify(nums.slice(s).concat(nums.slice(0,e+1))));
     }
+    if(s < e) acc = JSON.parse(JSON.stringify(nums.slice(s, e+1)));
+    else acc = JSON.parse(JSON.stringify(nums.slice(s).concat(nums.slice(0,e+1))));
     for(let i=acc.length-3; i>=0; i--) {
       acc[i] += Math.max.apply(null, acc.slice(i+2));
     }
