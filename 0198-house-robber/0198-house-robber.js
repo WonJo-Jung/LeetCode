@@ -8,5 +8,5 @@ var rob = function(nums) {
   for(let i=nums.length-3; i>=0; i--) {
     nums[i] += Math.max.apply(null, nums.slice(i+2));
   }
-  return Math.max.apply(null, nums);
+  return nums[0] > nums[1] ? nums[0] : nums[1];
 };
