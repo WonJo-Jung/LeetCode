@@ -4,6 +4,21 @@
  */
 var maximalSquare = function(matrix) {
   let maxSize = 0, R = matrix.length, C = matrix[0].length;
+  let dp = new Array(C+1).fill(0), prev = 0;
+  for(let i=1; i<=R; i++) {
+    for(let j=1; j<=C; j++) {
+      let tmp = dp[j];
+      if(matrix[i-1][j-1] === '1') {
+        dp[j] = Math.min(Math.min(dp[j-1], prev), dp[j])+1;
+        maxSize = Math.max(maxSize, dp[j]);
+      } else {
+        dp[j] = 0;
+      }
+      prev = tmp;
+    }
+  }
+  return maxSize * maxSize;
+  /* DP - double array
   let dp = [];
   for(let i=0; i<R+1; i++) dp[i] = new Array(C+1).fill(0);
   for(let i=1; i<=R; i++) {
@@ -15,6 +30,7 @@ var maximalSquare = function(matrix) {
     }
   }
   return maxSize * maxSize;
+  */
   /* Brute Force
   // for(let r=0; r<R; r++) {
   //   for(let c=0; c<C; c++) {
