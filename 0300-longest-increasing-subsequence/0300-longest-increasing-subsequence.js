@@ -3,6 +3,21 @@
  * @return {number}
  */
 var lengthOfLIS = function(nums) {
+  let tails = new Array(nums.length);
+  let size = 0;
+  for(const x of nums) {
+    let i=0; j=size;
+    while(i !== j) {
+      let m = Math.floor((i+j) / 2);
+      if(tails[m] < x) i = m+1;
+      else j = m;
+    }
+    tails[i] = x;
+    if(i === size) size++;
+  }
+  return size;
+  
+  /* DP
   let n = nums.length;
   let dp = new Array(n).fill(1);
   for(let i=0; i<n; i++) {
@@ -11,7 +26,7 @@ var lengthOfLIS = function(nums) {
     }
   }
   return Math.max.apply(null, dp);
-  
+  */
   /* Heap OOM
   let n=1;
   let dp = new Array(nums.length).fill().map((_,idx) => idx);
