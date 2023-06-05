@@ -1,4 +1,4 @@
-/**
+/** Binary Search
  * @param {number[]} nums
  * @return {number}
  */
