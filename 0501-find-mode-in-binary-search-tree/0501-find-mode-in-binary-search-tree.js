@@ -19,7 +19,6 @@ var findMode = function(root) {
     if(node.right !== null) stack[stack.length] = node.right;
     if(node.left !== null) stack[stack.length] = node.left;
   }
-  console.log(map);
   let max = Math.max.apply(null, Array.from(map.values()));
   let answer = [];
   map.forEach((val, key) => {
