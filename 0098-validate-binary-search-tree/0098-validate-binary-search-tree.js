@@ -18,7 +18,6 @@ var isValidBST = function(root) {
   }
   
   let arr = subBST(root.left).concat([root.val], subBST(root.right));
-  console.log(arr);
   for(let i=0; i<arr.length-1; i++) if(arr[i] >= arr[i+1]) return false;
   return true;
 };
