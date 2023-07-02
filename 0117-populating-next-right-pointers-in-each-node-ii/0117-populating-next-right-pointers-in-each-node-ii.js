@@ -14,15 +14,41 @@
  */
 var connect = function(root) {
   if(!root) return root;
-  let queue = [root];
-  while(queue.length) {
-    let count = queue.length;
-    while(count--) {
-      let node = queue.shift();
-      if(count) node.next = queue[0];
-      if(node.left) queue.push(node.left);
-      if(node.right) queue.push(node.right);
+  let start = root;
+  while(start) {
+    let curr = start, next = null, left = curr.left, right;
+    while(curr) {
+      while(!left) {
+        if(left === curr.left && curr.right) left = curr.right;
+        else {
+          curr = curr.next;
+          if(curr) left = curr.left;
+          else break;
+        }
+      }
+      if(curr) {
+        if(!next) next = left;
+        if(left === curr.left) right = curr.right;
+        else {
+          curr = curr.next;
+          if(curr) right = curr.left;
+          else break;
+        }
+        while(!right) {
+          if(right === curr.left && curr.right) right = curr.right;
+          else {
+            curr = curr.next;
+            if(curr) right = curr.left;
+            else break;
+          }
+        }
+        if(curr) {
+          left.next = right;
+          left = right;
+        }
+      }
     }
+    start = next;
   }
   return root;
 };
