@@ -15,8 +15,9 @@ var solve = function(board) {
   for(let i=0; i<m; i++) { // y-axis
     for(let j=0; j<n; j++) { // x-axis
       if(board[i][j] === "O" && !visited[i][j]) {
+        if(i === 0 || i === m-1 || j === 0 || j === n-1) continue;
         let path = [], stack = [[i,j]]; // y,x
-        let flippable = (i === 0 || i === m-1 || j === 0 || j === n-1) ? false : true;
+        let flippable = true;
         while(stack.length) {
           let pos = stack.pop();
           visited[pos[0]][pos[1]] = true;
