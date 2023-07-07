@@ -20,5 +20,8 @@ var canFinish = function(numCourses, prerequisites) {
     }
     courses.push([post, pre]);
   }
-  return courses.filter(course => course.length === numCourses).length > 1 ? false : true;
+  let count = 0;
+  for(let i=0; i<courses.length; i++) if(courses[i].length === numCourses) count++;
+  return count > 1 ? false : true;
+  // return courses.filter(course => course.length === numCourses).length > 1 ? false : true;
 };
