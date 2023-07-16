@@ -4,7 +4,11 @@
  */
 var missingNumber = function(nums) {
   nums.sort((a,b) => a-b);
-  for(let i=0; i<=nums.length; i++) {
-    if(nums[i] !== i) return i;
+  let l = 0, r = nums.length, m;
+  while(l<r) {
+    m = Math.floor((l+r)/2);
+    if(nums[m] > m) r = m;
+    else l = m+1;
   }
+  return l;
 };
