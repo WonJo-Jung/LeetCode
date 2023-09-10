@@ -3,16 +3,15 @@
  * @return {string[]}
  */
 var findRelativeRanks = function(score) {
-  let ranks = JSON.parse(JSON.stringify(score)).sort((a,b) => b-a);
-  let map = new Map();
-  for(let i=0; i<ranks.length; i++) map.set(ranks[i], i);
-  let answer = [];
+  score = score.map((s, index) => s = [s, index]);
+  score.sort((a,b) => b[0] - a[0]);
+  score = score.map((s, index) => s = [s[0], s[1], index]);
+  score.sort((a,b) => a[1] - b[1]);
   for(let i=0; i<score.length; i++) {
-    let rank = map.get(score[i]);
-    if(rank == 0) answer.push("Gold Medal");
-    else if(rank == 1) answer.push("Silver Medal");
-    else if(rank == 2) answer.push("Bronze Medal");
-    else answer.push(`${rank+1}`);
+    if(score[i][2] == 0) score[i] = "Gold Medal";
+    else if(score[i][2] == 1) score[i] = "Silver Medal";
+    else if(score[i][2] == 2) score[i] = "Bronze Medal";
+    else score[i] = `${score[i][2]+1}`;
   }
-  return answer;
+  return score;
 };
