@@ -3,14 +3,28 @@
  * @return {number}
  */
 var thirdMax = function(nums) {
-  nums.sort((a,b) => b-a);
-  let max = nums[0], num = nums[0], level = 1;
-  for(let i=1; i<nums.length; i++) {
-    if(level === 3) break;
-    if(num === nums[i]) continue;
-    num = nums[i];
-    level++;
+  let answer = [nums[0]];
+  let i=1;
+  for(; i<nums.length; i++) {
+    if(answer.length === 3) break;
+    if(!answer.includes(nums[i])) answer.push(nums[i]);
   }
-  if(level === 3) return num;
-  else return max;
+  answer.sort((a,b) => b-a);
+  let max = answer[0], mid = answer[1], min = answer[2];
+  for(; i<nums.length; i++) {
+    if(nums[i] != min && nums[i] != mid && nums[i] != max) {
+      if(min < nums[i] && nums[i] < mid) min = nums[i];
+      else if(mid < nums[i] && nums[i] < max) {
+        min = mid;
+        mid = nums[i];
+      }
+      else if(max < nums[i]) {
+        min = mid;
+        mid = max;
+        max = nums[i];
+      }
+    }
+  }
+  if(answer.length === 3) return min;
+  else return answer[0];
 };
